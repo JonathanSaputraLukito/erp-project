@@ -1,0 +1,66 @@
+/* Kontainer utama dashboard */
+.dashboard {
+    width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    padding: 2rem;
+    box-sizing: border-box;
+    color: #213547;
+  }
+  @media (prefers-color-scheme: dark) {
+    .dashboard {
+      color: #ffffff;
+    }
+  }
+  
+  /* Judul dashboard */
+  .dashboard-title {
+    margin-bottom: 1.5rem;
+    font-size: 2rem;
+    font-weight: 600;
+  }
+  
+  /* Kartu untuk menampilkan total penjualan */
+  .sales-card {
+    background-color: #ffffff;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  @media (prefers-color-scheme: dark) {
+    .sales-card {
+      background-color: #1a1a1a;
+      color: #ffffff;
+    }
+  }
+  
+  .sales-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #646cff; /* warna utama sesuai gaya repo */
+    margin-top: 0.5rem;
+  }
+  
+  /* Layout tombol-tombol menu */
+  .menu-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+  
+  .menu-buttons button {
+    background-color: #646cff;
+    color: #ffffff;
+    border: none;
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    flex: 1 1 200px;
+    /* Pastikan tombol cukup besar untuk sentuhan:contentReference[oaicite:1]{index=1} */
+  }
+  .menu-buttons button:hover {
+    background-color: #535bf2;
+  }
+  

@@ -1,0 +1,126 @@
+/* Container utama halaman bon penjualan */
+.sales-receipt-page {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  /* Kartu ringkasan di atas tabel */
+  .summary-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+    margin-bottom: 2rem;
+    background-color: #f9f9ff;
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  .summary-item {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .summary-item label {
+    font-weight: 600;
+    margin-bottom: 0.25rem;
+    font-size: 0.9rem;
+  }
+  
+  .summary-item input {
+    padding: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.9rem;
+  }
+  
+  .summary-item span {
+    font-weight: 600;
+    font-size: 1rem;
+  }
+  
+  /* Pembungkus tabel untuk border-radius dan overflow */
+  .table-wrapper {
+    border-radius: 8px;
+    overflow-x: auto;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  }
+  
+  /* Tabel daftar barang */
+  .items-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  .items-table thead {
+    background-color: #646cff;
+    color: #ffffff;
+  }
+  
+  .items-table th,
+  .items-table td {
+    padding: 0.75rem 0.5rem;
+    border-bottom: 1px solid #e0e0e0;
+    text-align: left;
+  }
+  
+  .items-table tbody tr:nth-child(even) {
+    background-color: #f8f8ff;
+  }
+  
+  .items-table td:last-child {
+    text-align: center;
+  }
+  
+  /* Input di dalam tabel */
+  .items-table td input {
+    width: 100%;
+    padding: 0.4rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    box-sizing: border-box;
+  }
+  
+  /* Tombol hapus baris */
+  .delete-row {
+    background-color: #ff6b6b;
+    color: #fff;
+    border: none;
+    padding: 0.25rem 0.75rem;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+  }
+  
+  .delete-row:hover {
+    background-color: #e05555;
+  }
+  
+  /* Tombol tambah baris */
+  .add-row {
+    margin-top: 1rem;
+    background-color: #646cff;
+    color: #ffffff;
+    border: none;
+    border-radius: 6px;
+    padding: 0.6rem 1.2rem;
+    font-size: 1rem;
+    cursor: pointer;
+  }
+  
+  .add-row:hover {
+    background-color: #535bf2;
+  }
+  
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Menghilangkan spinner pada Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}

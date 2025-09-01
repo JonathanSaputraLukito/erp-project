@@ -1,0 +1,202 @@
+/* Container utama dua kolom – memenuhi seluruh lebar dan tinggi halaman */
+.login-container {
+  display: flex;
+  width: 100vw;      /* menempati 100% lebar layar */
+  height: 100vh;    /* menempati 100% tinggi viewport */
+}
+@media (max-width: 768px) {
+  .login-container {
+    flex-direction: column;
+  }
+}
+
+
+/* Panel ilustrasi di kiri: menggunakan gradien warna utama */
+.login-illustration {
+  flex: 1;
+  background: linear-gradient(135deg, #646cff 0%, #b4b5ff 100%);
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  text-align: center;
+}
+.login-illustration h2 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+.login-illustration p {
+  font-size: 1.25rem;
+  max-width: 320px;
+}
+
+/* Panel form di kanan */
+.login-form-container {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  background-color: #f5f5f5;
+}
+@media (prefers-color-scheme: dark) {
+  .login-form-container {
+    background-color: #242424;
+  }
+}
+
+/* Card form */
+.login-form {
+  width: 100%;
+  max-width: 400px;
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+@media (prefers-color-scheme: dark) {
+  .login-form {
+    background: #1a1a1a;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.4);
+    color: #ffffff;
+  }
+}
+
+/* Judul form */
+.login-title {
+  margin-bottom: 1.5rem;
+  text-align: center;
+  color: #646cff;
+}
+
+/* Input group dan fokus */
+.input-group {
+  margin-bottom: 1rem;
+  display: flex;
+  flex-direction: column;
+}
+.input-group label {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+.input-group input {
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 1rem;
+}
+.input-group input:focus {
+  outline: none;
+  border-color: #646cff;
+  box-shadow: 0 0 0 3px rgba(100,108,255,0.2);
+}
+@media (prefers-color-scheme: dark) {
+  .input-group input {
+    background-color: #333;
+    border-color: #555;
+    color: #ffffff;
+  }
+  .input-group input:focus {
+    border-color: #646cff;
+    box-shadow: 0 0 0 3px rgba(100,108,255,0.4);
+  }
+}
+
+/* Wrapper untuk password + tombol show/hide */
+.password-wrapper {
+  display: flex;
+  align-items: center;
+}
+.toggle-password {
+  margin-left: 0.5rem;
+  background: none;
+  border: none;
+  color: #646cff;
+  font-size: 0.875rem;
+  cursor: pointer;
+}
+
+/* Opsi remember me & lupa password */
+.options {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.remember-me input {
+  margin-right: 0.25rem;
+}
+.forgot-password {
+  color: #646cff;
+  font-size: 0.875rem;
+  text-decoration: none;
+}
+.forgot-password:hover {
+  text-decoration: underline;
+}
+
+/* Tombol utama */
+.submit-button {
+  background-color: #646cff;
+  color: #ffffff;
+  border: none;
+  border-radius: 6px;
+  padding: 0.75rem;
+  font-size: 1rem;
+  cursor: pointer;
+  width: 100%;
+  margin-top: 0.5rem;
+}
+.submit-button:hover {
+  background-color: #535bf2;
+}
+
+/* Teks pendaftaran */
+.signup-text {
+  margin-top: 1rem;
+  text-align: center;
+  font-size: 0.875rem;
+}
+.signup-text a {
+  color: #646cff;
+  text-decoration: none;
+}
+.signup-text a:hover {
+  text-decoration: underline;
+}
+
+/* Label sebagai kontainer untuk teks dan ikon */
+.input-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.5rem;
+}
+
+/* Placeholder agar label email memiliki ruang untuk ikon (ukuran sama) */
+.label-icon-placeholder {
+  width: 20px;    /* sama dengan lebar ikon mata */
+  height: 20px;
+}
+
+/* Tombol ikon mata di dalam label */
+.toggle-password {
+  background: none;
+  border: none;
+  color: #646cff;
+  padding: 0;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.toggle-password svg {
+  width: 20px;
+  height: 20px;
+}
+
+/* Opsi input-group lainnya tetap berlaku (fokus, dark mode, dsb.) */
+
