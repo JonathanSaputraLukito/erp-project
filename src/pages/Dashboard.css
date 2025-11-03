@@ -5,62 +5,102 @@
     margin: 0;
     padding: 2rem;
     box-sizing: border-box;
-    color: #213547;
+    background-color: #f7fafc;
+    color: var(--text-primary);
   }
   @media (prefers-color-scheme: dark) {
     .dashboard {
-      color: #ffffff;
+      background-color: #0f172a;
     }
   }
   
   /* Judul dashboard */
   .dashboard-title {
-    margin-bottom: 1.5rem;
-    font-size: 2rem;
-    font-weight: 600;
+    margin-bottom: 2rem;
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: var(--text-primary);
   }
   
   /* Kartu untuk menampilkan total penjualan */
   .sales-card {
-    background-color: #ffffff;
-    border-radius: 8px;
-    padding: 1.5rem;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
+    border-radius: 16px;
+    padding: 2rem;
     margin-bottom: 2rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border);
+    color: white;
+    position: relative;
+    overflow: hidden;
   }
-  @media (prefers-color-scheme: dark) {
-    .sales-card {
-      background-color: #1a1a1a;
-      color: #ffffff;
-    }
+
+  .sales-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 300px;
+    height: 300px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 50%;
+  }
+
+  .sales-card h2 {
+    color: white;
+    font-size: 1.125rem;
+    font-weight: 600;
+    margin: 0 0 0.5rem 0;
+    opacity: 0.95;
+    position: relative;
+    z-index: 1;
   }
   
   .sales-value {
-    font-size: 2rem;
-    font-weight: bold;
-    color: #646cff; /* warna utama sesuai gaya repo */
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: white;
     margin-top: 0.5rem;
+    position: relative;
+    z-index: 1;
   }
   
   /* Layout tombol-tombol menu */
   .menu-buttons {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.25rem;
   }
   
   .menu-buttons button {
-    background-color: #646cff;
-    color: #ffffff;
-    border: none;
-    padding: 0.75rem 1.5rem;
-    border-radius: 6px;
-    font-size: 1rem;
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+    border: 2px solid var(--border);
+    padding: 1.5rem;
+    border-radius: 12px;
+    font-size: 1.0625rem;
+    font-weight: 600;
     cursor: pointer;
-    flex: 1 1 200px;
-    /* Pastikan tombol cukup besar untuk sentuhan:contentReference[oaicite:1]{index=1} */
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow-sm);
+    text-align: left;
   }
   .menu-buttons button:hover {
-    background-color: #535bf2;
+    background-color: var(--primary);
+    color: white;
+    border-color: var(--primary);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+  }
+  .menu-buttons button:active {
+    transform: translateY(-2px);
+  }
+  @media (prefers-color-scheme: dark) {
+    .menu-buttons button {
+      background-color: var(--bg-card);
+    }
+    .menu-buttons button:hover {
+      background-color: var(--primary);
+    }
   }
   

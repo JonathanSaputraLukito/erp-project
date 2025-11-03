@@ -1,20 +1,33 @@
 /* Container utama halaman bon penjualan */
 .sales-receipt-page {
-    max-width: 1200px;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 2rem;
+    background-color: #f7fafc;
+    min-height: 100vh;
+  }
+  @media (prefers-color-scheme: dark) {
+    .sales-receipt-page {
+      background-color: #0f172a;
+    }
+  }
+
+  .sales-receipt-page h1 {
+    color: var(--text-primary);
+    margin-bottom: 2rem;
   }
   
   /* Kartu ringkasan di atas tabel */
   .summary-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 1.25rem;
     margin-bottom: 2rem;
-    background-color: #f9f9ff;
-    padding: 1rem 1.5rem;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    background-color: var(--bg-card);
+    padding: 1.75rem;
+    border-radius: 16px;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
   }
   
   .summary-item {
@@ -24,27 +37,50 @@
   
   .summary-item label {
     font-weight: 600;
-    margin-bottom: 0.25rem;
-    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.025em;
   }
   
   .summary-item input {
-    padding: 0.5rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 0.9rem;
+    padding: 0.75rem;
+    border: 2px solid var(--border);
+    border-radius: 8px;
+    font-size: 0.9375rem;
+    transition: all 0.2s ease;
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+  }
+  .summary-item input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-light);
+  }
+  @media (prefers-color-scheme: dark) {
+    .summary-item input {
+      background-color: #0f172a;
+    }
+    .summary-item input:focus {
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    }
   }
   
   .summary-item span {
-    font-weight: 600;
-    font-size: 1rem;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--primary);
+    margin-top: 0.25rem;
   }
   
   /* Pembungkus tabel untuk border-radius dan overflow */
   .table-wrapper {
-    border-radius: 8px;
-    overflow-x: auto;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+    background-color: var(--bg-card);
   }
   
   /* Tabel daftar barang */
@@ -54,19 +90,43 @@
   }
   
   .items-table thead {
-    background-color: #646cff;
+    background: linear-gradient(135deg, var(--primary) 0%, var(--primary-hover) 100%);
     color: #ffffff;
   }
   
   .items-table th,
   .items-table td {
-    padding: 0.75rem 0.5rem;
-    border-bottom: 1px solid #e0e0e0;
+    padding: 1rem 0.875rem;
+    border-bottom: 1px solid var(--border);
     text-align: left;
   }
+
+  .items-table th {
+    font-weight: 600;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
   
+  .items-table tbody tr {
+    transition: background-color 0.2s ease;
+  }
+
   .items-table tbody tr:nth-child(even) {
-    background-color: #f8f8ff;
+    background-color: rgba(59, 130, 246, 0.03);
+  }
+
+  .items-table tbody tr:hover {
+    background-color: rgba(59, 130, 246, 0.08);
+  }
+
+  @media (prefers-color-scheme: dark) {
+    .items-table tbody tr:nth-child(even) {
+      background-color: rgba(59, 130, 246, 0.05);
+    }
+    .items-table tbody tr:hover {
+      background-color: rgba(59, 130, 246, 0.12);
+    }
   }
   
   .items-table td:last-child {
@@ -76,42 +136,74 @@
   /* Input di dalam tabel */
   .items-table td input {
     width: 100%;
-    padding: 0.4rem;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 0.9rem;
+    padding: 0.5rem 0.75rem;
+    border: 2px solid var(--border);
+    border-radius: 6px;
+    font-size: 0.875rem;
     box-sizing: border-box;
+    transition: all 0.2s ease;
+    background-color: var(--bg-card);
+    color: var(--text-primary);
+  }
+  .items-table td input:focus {
+    outline: none;
+    border-color: var(--primary);
+    box-shadow: 0 0 0 3px var(--primary-light);
+  }
+  @media (prefers-color-scheme: dark) {
+    .items-table td input {
+      background-color: #0f172a;
+    }
+    .items-table td input:focus {
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.2);
+    }
   }
   
   /* Tombol hapus baris */
   .delete-row {
-    background-color: #ff6b6b;
+    background-color: var(--error);
     color: #fff;
     border: none;
-    padding: 0.25rem 0.75rem;
-    border-radius: 4px;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
     cursor: pointer;
-    font-size: 0.8rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow-sm);
   }
   
   .delete-row:hover {
-    background-color: #e05555;
+    background-color: #dc2626;
+    transform: translateY(-1px);
+    box-shadow: var(--shadow);
+  }
+  .delete-row:active {
+    transform: translateY(0);
   }
   
   /* Tombol tambah baris */
   .add-row {
-    margin-top: 1rem;
-    background-color: #646cff;
+    margin-top: 1.5rem;
+    background-color: var(--primary);
     color: #ffffff;
     border: none;
-    border-radius: 6px;
-    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    padding: 0.875rem 1.5rem;
     font-size: 1rem;
+    font-weight: 600;
     cursor: pointer;
+    transition: all 0.2s ease;
+    box-shadow: var(--shadow-sm);
   }
   
   .add-row:hover {
-    background-color: #535bf2;
+    background-color: var(--primary-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow);
+  }
+  .add-row:active {
+    transform: translateY(0);
   }
   
 input[type="number"]::-webkit-inner-spin-button,
