@@ -1,46 +1,103 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './Dashboard.css';
 
 const Dashboard = ({ user, onNavigate }) => {
-  const [totalSales, setTotalSales] = useState(0);
+  const [transactions] = useState([
+    { id: 1, name: 'Bapak Sutejo', date: '10 Okt 2025, 09:36', amount: 'Rp 1.998.483,96', status: 'completed' },
+    { id: 2, name: 'Bapak Sutejo', date: '10 Okt 2025, 09:36', amount: 'Rp 1.998.483,96', status: 'completed' },
+    { id: 3, name: 'Bapak Sutejo', date: '10 Okt 2025, 09:36', amount: 'Rp 1.998.483,96', status: 'completed' },
+    { id: 4, name: 'Bapak Sutejo', date: '10 Okt 2025, 09:36', amount: 'Rp 1.998.483,96', status: 'completed' },
+    { id: 5, name: 'Bapak Sutejo', date: '10 Okt 2025, 09:35', amount: 'Rp 1.998.483,96', status: 'completed' },
+  ]);
 
-  // Contoh perhitungan total penjualan bulan ini.
-  // Ganti logika di dalam useEffect dengan panggilan API backend Anda sendiri.
-  useEffect(() => {
-    // Misal: fetch data penjualan dari backend
-    // fetch('/api/sales/this-month')
-    //   .then((res) => res.json())
-    //   .then((data) => setTotalSales(data.total));
-
-    // Placeholder data: ganti dengan data aktual Anda
-    const dummyTotal = 12500000;
-    setTotalSales(dummyTotal);
-  }, []);
-
-  // Format angka dengan pemisah ribuan (Rp)
-  const formatRupiah = (value) => {
-    return value.toLocaleString('id-ID');
-  };
+  const stats = [
+    { label: 'Total Produk', value: '3', sub: '', icon: '📦', iconClass: 'blue' },
+    { label: 'Penjualan Hari Ini', value: 'Rp 0', sub: '5 transaksi total', icon: '💰', iconClass: 'green' },
+    { label: 'Pembelian Hari Ini', value: 'Rp 0', sub: '0 transaksi total', icon: '📥', iconClass: 'purple' },
+    { label: 'Stok Menipis', value: '2', sub: '', icon: '⚠️', iconClass: 'red' },
+  ];
 
   return (
     <div className="dashboard">
-      <h1 className="dashboard-title">Dashboard</h1>
-
-      {/* Kartu total penjualan */}
-      <div className="sales-card">
-        <h2>Total Penjualan Bulan Ini</h2>
-        <p className="sales-value">Rp {formatRupiah(totalSales)}</p>
+      <div className="dashboard-header">
+        <h1 className="dashboard-title">Dashboard ERP</h1>
+        <p className="dashboard-subtitle">Selamat datang, Jonathan saputra lukito</p>
       </div>
 
-      {/* Tombol navigasi ke halaman lain */}
-      <div className="menu-buttons">
-        {/* Button Penjualan memanggil onNavigate('sales') */}
-        <button onClick={() => onNavigate('sales')}>Penjualan</button>
-        {/* Tombol lain tetap atau disesuaikan */}
-        <button onClick={() => onNavigate('pembelian')}>Pembelian</button>
-        <button onClick={() => onNavigate('customer')}>Customer</button>
-        <button onClick={() => onNavigate('stocks')}>Stocks</button>
-        <button onClick={() => onNavigate('settings')}>Settings</button>
+      <div className="stats-grid">
+        {stats.map((stat, idx) => (
+          <div key={idx} className="stat-card">
+            <div className="stat-content">
+              <div className="stat-label">{stat.label}</div>
+              <div className="stat-value">{stat.value}</div>
+              {stat.sub && <div className="stat-sub">{stat.sub}</div>}
+            </div>
+            <div className={`stat-icon ${stat.iconClass}`}>{stat.icon}</div>
+          </div>
+        ))}
+      </div>
+
+      <div className="transactions-section">
+        <div className="transactions-card">
+          <div className="card-header">
+            <h2 className="card-title">
+              <span>📝</span>
+              Transaksi Terbaru
+            </h2>
+          </div>
+          <div className="card-content">
+            <div className="transaction-list">
+              {transactions.map((trans) => (
+                <div key={trans.id} className="transaction-item">
+                  <div className="transaction-icon">🛒</div>
+                  <div className="transaction-details">
+                    <div className="transaction-name">{trans.name}</div>
+                    <div className="transaction-time">{trans.date}</div>
+                  </div>
+                  <div className="transaction-amount">
+                    <div className="amount">{trans.amount}</div>
+                    <div className="status-badge">{trans.status}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div className="alerts-card">
+          <div className="card-header">
+            <h2 className="card-title">
+              <span>⏰</span>
+              Menunggu Approval
+            </h2>
+          </div>
+          <div className="card-content">
+            <div className="empty-state">
+              <p className="empty-state-text">Tidak ada yang perlu di-approve</p>
+            </div>
+          </div>
+
+          <div style={{ borderTop: '1px solid var(--border)' }}></div>
+
+          <div className="card-header">
+            <h2 className="card-title">
+              <span>⚠️</span>
+              Stok Menipis
+            </h2>
+          </div>
+          <div className="card-content">
+            <div className="alert-items">
+              <div className="alert-item-badge">
+                <span>📦</span>
+                Open Back - 16 unit
+              </div>
+              <div className="alert-item-badge">
+                <span>📦</span>
+                Open Back - 1 unit
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -1,17 +1,18 @@
 import { useState } from 'react';
+import './App.css';
 import LoginPage from './pages/LoginPage';
 import Dashboard from './pages/Dashboard';
 import SalesReceiptPage from './pages/SalesReceiptPage';
+import Sidebar from './components/Sidebar';
+import Header from './components/Header';
 
-// Data dummy user seperti sebelumnya
 const dummyUsers = [
-  { email: 'admin@example.com', password: 'admin123', name: 'Admin' },
+  { email: 'admin@example.com', password: 'admin123', name: 'Administrator' },
   { email: 'user@example.com', password: 'user123', name: 'User' },
 ];
 
 function App() {
   const [currentUser, setCurrentUser] = useState(null);
-  // Tambahkan currentPage: 'login', 'dashboard', 'sales', dll.
   const [currentPage, setCurrentPage] = useState('login');
 
   const handleLogin = (email, password) => {
@@ -20,32 +21,42 @@ function App() {
     );
     if (foundUser) {
       setCurrentUser(foundUser);
-      setCurrentPage('dashboard'); // Arahkan ke dashboard setelah login
+      setCurrentPage('dashboard');
     } else {
       alert('Email atau kata sandi salah!');
     }
   };
 
-  // Fungsi untuk navigasi antar halaman
   const handleNavigate = (page) => {
     setCurrentPage(page);
   };
 
-  // Render berdasarkan halaman saat ini
+  const handleLogout = () => {
+    setCurrentUser(null);
+    setCurrentPage('login');
+  };
+
   if (!currentUser) {
     return <LoginPage onLogin={handleLogin} />;
   }
 
-  if (currentPage === 'dashboard') {
-    return <Dashboard user={currentUser} onNavigate={handleNavigate} />;
-  }
-
-  if (currentPage === 'sales') {
-    return <SalesReceiptPage />;
-  }
-
-  // fallback
-  return null;
+  return (
+    <div className="app-container">
+      <Sidebar currentPage={currentPage} onNavigate={handleNavigate} onLogout={handleLogout} />
+      <div className="main-content">
+        <Header user={currentUser} />
+        <div className="page-content">
+          {currentPage === 'dashboard' && <Dashboard user={currentUser} onNavigate={handleNavigate} />}
+          {currentPage === 'penjualan' && <SalesReceiptPage />}
+          {currentPage !== 'dashboard' && currentPage !== 'penjualan' && (
+            <div style={{ padding: '2rem', textAlign: 'center', color: 'var(--text-secondary)' }}>
+              <h2>Halaman {currentPage} - Coming Soon</h2>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  );
 }
 
 export default App;
