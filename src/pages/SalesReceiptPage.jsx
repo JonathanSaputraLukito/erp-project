@@ -2,17 +2,14 @@ import { useState } from 'react';
 import './SalesReceiptPage.css';
 
 const SalesReceiptPage = () => {
-  // Data barang, bisa bertambah/dihapus
   const [items, setItems] = useState([
     { name: '', length: '', color: '', quantity: 1, price: 0, total: 0 },
   ]);
 
-  // Data ringkasan
   const [customer, setCustomer] = useState('');
   const [discount, setDiscount] = useState(0);
-  const [ppnRate, setPpnRate] = useState(0.11); // PPN default 11%
+  const [ppnRate, setPpnRate] = useState(0.11);
 
-  // Fungsi untuk mengubah nilai dalam baris dan hitung total
   const handleItemChange = (index, field, value) => {
     const newItems = [...items];
     if (['quantity', 'price', 'length'].includes(field)) {
@@ -24,7 +21,6 @@ const SalesReceiptPage = () => {
     setItems(newItems);
   };
 
-  // Tambah baris baru
   const addItem = () => {
     setItems([
       ...items,
@@ -32,29 +28,26 @@ const SalesReceiptPage = () => {
     ]);
   };
 
-  // Hapus baris tertentu
   const removeItem = (index) => {
     const newItems = items.filter((_, i) => i !== index);
     setItems(newItems);
   };
 
-  // Hitung total pembelian, PPN, dan total akhir
   const totalPurchase = items.reduce((sum, item) => sum + item.total, 0);
   const ppnValue = totalPurchase * parseFloat(ppnRate);
-  const finalTotal =
-    totalPurchase + ppnValue - parseFloat(discount || 0);
+  const finalTotal = totalPurchase + ppnValue - parseFloat(discount || 0);
 
   return (
     <div className="sales-receipt-page">
       <h1>Bon Penjualan</h1>
 
-      {/* Ringkasan pembelian */}
       <div className="summary-container">
         <div className="summary-item">
           <label htmlFor="customer">Nama Customer</label>
           <input
             id="customer"
             type="text"
+            placeholder="Masukkan nama customer"
             value={customer}
             onChange={(e) => setCustomer(e.target.value)}
           />
@@ -67,12 +60,13 @@ const SalesReceiptPage = () => {
         </div>
         <div className="summary-item">
           <label htmlFor="ppn">
-            PPN (misal: 0.11 = 11%)
+            PPN Rate
           </label>
           <input
             id="ppn"
             type="number"
             step="0.01"
+            placeholder="0.11"
             value={ppnRate}
             onChange={(e) => setPpnRate(e.target.value)}
           />
@@ -82,6 +76,7 @@ const SalesReceiptPage = () => {
           <input
             id="discount"
             type="number"
+            placeholder="0"
             value={discount}
             onChange={(e) => setDiscount(e.target.value)}
           />
@@ -94,7 +89,6 @@ const SalesReceiptPage = () => {
         </div>
       </div>
 
-      {/* Tabel input barang dengan pembungkus untuk border radius */}
       <div className="table-wrapper">
         <table className="items-table">
           <thead>
@@ -114,6 +108,7 @@ const SalesReceiptPage = () => {
                 <td>
                   <input
                     type="text"
+                    placeholder="Nama barang"
                     value={item.name}
                     onChange={(e) =>
                       handleItemChange(
@@ -127,6 +122,7 @@ const SalesReceiptPage = () => {
                 <td>
                   <input
                     type="number"
+                    placeholder="0"
                     value={item.length}
                     onChange={(e) =>
                       handleItemChange(
@@ -140,6 +136,7 @@ const SalesReceiptPage = () => {
                 <td>
                   <input
                     type="text"
+                    placeholder="Warna"
                     value={item.color}
                     onChange={(e) =>
                       handleItemChange(
@@ -154,6 +151,7 @@ const SalesReceiptPage = () => {
                   <input
                     type="number"
                     min="1"
+                    placeholder="1"
                     value={item.quantity}
                     onChange={(e) =>
                       handleItemChange(
@@ -167,6 +165,7 @@ const SalesReceiptPage = () => {
                 <td>
                   <input
                     type="number"
+                    placeholder="0"
                     value={item.price}
                     onChange={(e) =>
                       handleItemChange(
@@ -178,8 +177,9 @@ const SalesReceiptPage = () => {
                   />
                 </td>
                 <td>
-                  Rp{' '}
-                  {item.total.toLocaleString('id-ID')}
+                  <span style={{ fontWeight: '600', color: 'var(--primary)' }}>
+                    Rp {item.total.toLocaleString('id-ID')}
+                  </span>
                 </td>
                 <td>
                   <button
@@ -201,7 +201,7 @@ const SalesReceiptPage = () => {
         className="add-row"
         onClick={addItem}
       >
-        Tambah Barang
+        + Tambah Barang
       </button>
     </div>
   );
